@@ -48,13 +48,11 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 │   ├── 99_*.ipynb                           ANN 비교, 통계 부록 분석
 │   ├── appendix/                            부록 노트북 (슬롯 효과, 집중도 등)
 │   ├── *.py                                 timeseries_lib / lstm_pipeline / bl_config(_ann) / bl_functions / bl_runner / master_table / analyze_plots
-│   ├── docs/                                단계별 상세 문서 (아래 표 참고)
-│   └── _dev/, _evidence/                    개발용 스크립트, Optuna 캐시 (참고용)
+│   └── docs/                                단계별 상세 문서 (아래 표 참고)
 │
 ├── final_data/                 노트북 산출 데이터 (data/03b_lstm/ 이하 LSTM 변동성 예측치)
 ├── final_outputs/               차트·표 PNG 산출물
-│   ├── outputs/                     단계별 폴더(01_data ... 06_Regime_Analysis) + 레짐/누적수익 차트
-│   └── results_backup_pre_spy_fix/  SPY 단위 수정 이전 백업
+│   └── outputs/                     단계별 폴더(01_data ... 06_Regime_Analysis) + 레짐/누적수익 차트
 │
 └── root_html/                   대시보드 프로토타입 정적 export
     └── root_files/                  Adaptive VolControl Fund.html
