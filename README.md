@@ -28,13 +28,12 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 ## 폴더 구조
 
 ```
-paper_and_final_pt/
 ├── paper_docs/                 논문
-│   ├── paper/                      한글 원고 (paper.md) + 부록·상세 수식(detail.md, appendix_grid_tables.md)
+│   ├── paper/                      한글 원고 (paper.md) + 부록·상세 수식(detail.md, appendix_grid_tables.md) + JIIS 변환본(.docx)
 │   ├── Low_Volatility_Portfolio_.../ 한글 풀 논문 LaTeX (main.tex, Figure/, references.bib)
 │   ├── kjas_paper/                  KJAS(한국응용통계학회) 투고 포맷 — 영문 제목/저자, kjas3.cls
 │   ├── kjas_guide/                  KJAS 서식 가이드 원본
-│   └── root_files/                  JIIS 변환본(.docx), 블랙-리터만 절 초안
+│   └── root_files/                  블랙-리터만 절 초안(.docx), JIIS 서식 가이드 국문 번역
 │
 ├── final_code/                 최종 분석 코드 (노트북 7단계 파이프라인 + 모듈)
 │   ├── 01_DataCollection.ipynb              데이터 수집 (S&P500 멤버십·가격·패널)
@@ -48,13 +47,17 @@ paper_and_final_pt/
 │   ├── 06_Regime_Analysis.ipynb             4-레짐(hold-out 포함) winner 검증
 │   ├── 99_*.ipynb                           ANN 비교, 통계 부록 분석
 │   ├── appendix/                            부록 노트북 (슬롯 효과, 집중도 등)
-│   ├── *.py                                 timeseries_lib / lstm_pipeline / bl_config / bl_functions / master_table / analyze_plots
+│   ├── *.py                                 timeseries_lib / lstm_pipeline / bl_config(_ann) / bl_functions / bl_runner / master_table / analyze_plots
 │   ├── docs/                                단계별 상세 문서 (아래 표 참고)
 │   └── _dev/, _evidence/                    개발용 스크립트, Optuna 캐시 (참고용)
 │
-├── final_data/                 노트북 산출 데이터 (패널, LSTM 예측치 등)
-├── final_outputs/               차트·표 PNG 산출물 (단계별 폴더 + 레짐/누적수익 차트)
-└── root_html/                   대시보드 프로토타입 정적 export (Adaptive VolControl Fund)
+├── final_data/                 노트북 산출 데이터 (data/03b_lstm/ 이하 LSTM 변동성 예측치)
+├── final_outputs/               차트·표 PNG 산출물
+│   ├── outputs/                     단계별 폴더(01_data ... 06_Regime_Analysis) + 레짐/누적수익 차트
+│   └── results_backup_pre_spy_fix/  SPY 단위 수정 이전 백업
+│
+└── root_html/                   대시보드 프로토타입 정적 export
+    └── root_files/                  Adaptive VolControl Fund.html
 ```
 
 ### 코드 문서 가이드 (`final_code/docs/`)
