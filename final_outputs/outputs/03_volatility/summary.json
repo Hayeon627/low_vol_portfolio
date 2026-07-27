@@ -1,0 +1,21 @@
+{
+  "notebook": "03b_Volatility_Forecasting",
+  "csv_md5": "276a5e143fbed8a852e0d76618401b5b",
+  "n_tickers": 617,
+  "date_range": "2007-04-23 ~ 2026-02-27",
+  "rmse_avg": {
+    "lstm": 0.5184841843264669,
+    "har": 0.3913507875060677,
+    "ensemble": 0.3821595196001218
+  },
+  "best_model_count": {
+    "ensemble": 403,
+    "har": 200,
+    "lstm": 14
+  },
+  "reproducibility": {
+    "random_seed": 42,
+    "force_recompute": false,
+    "cache_used": true
+  }
+}
