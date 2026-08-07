@@ -21,7 +21,7 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 | 저변동 anomaly (횡단면 EDA) | 저변동 Sharpe 0.96 vs 고변동 0.73, MDD -16.7% vs -34.1% |
 | **최종 제안** (논문) | 단일 최적 슬롯 대신 **두 옵션** — Ensemble-defensive($q^{lam}$, 전 국면 저변동 뷰 유지) / Ensemble-adaptive($q^{ff3}$, 강세장 적응) |
 | 벤치마크 대비 (20bp 거래비용 차감 후) | SPY 0.93 / 1N 0.86 / Risk Parity 0.89 / ANN-anchor 0.95 대비 우위 (Ensemble-defensive 1.04–1.07, Ensemble-adaptive 1.05–1.10) |
-| 강건성 | Q 민감도 [0.001, 0.010] 전 구간 통계적 동등 (Memmel JK z-test), 3-레짐(HMM) 전환점 안정성 확인 |
+| 강건성 | Q 민감도 [0.001, 0.010] 전 구간에서 기준 슬롯과 통계적 동등 (Memmel JK z-test), HMM 구조적 전환점은 데이터 빈티지·시드 변경에도 불변 |
 | **Out-of-sample 한계** (1단계) | 단일 winner 선정 방식(`mat_eq_eq_raw_pap`)은 hold-out 24개월에서 **실패** — Sortino 0.516 (90개 중 88위), SPY(2.310) 대비 -1.79. 이 negative result가 두 옵션 제안으로의 설계 전환 근거 |
 
 ---
@@ -49,14 +49,14 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 │   ├── 06_Regime_Analysis.ipynb             hold-out winner 검증 [1단계]
 │   ├── 99_main_analysis.ipynb               논문 본문·부록 결과 산출 [2단계]
 │   ├── 99_analyze_ann(_full).ipynb          ANN 비교 — (_full) 이 논문 반영본 [2단계]
-│   ├── 99_lstm_statistics / 99_slot_effects  통계 부록 분석
-│   ├── appendix/                            부록 노트북 (슬롯 효과, 집중도 등)
+│   ├── appendix/                            부록 노트북 (99_lstm_statistics, 99_slot_effects, 99_explore, draft_*)
 │   ├── *.py                                 timeseries_lib / lstm_pipeline / bl_config(_ann) / bl_functions / bl_runner / master_table / analyze_plots
 │   └── docs/                                단계별 상세 문서 (아래 표 참고)
 │
-├── final_data/                 노트북 산출 데이터 (data/03b_lstm/ 이하 LSTM 변동성 예측치)
+├── final_data/                 03b LSTM 단계 진단 산출물 (차트 PNG + 평가 지표 JSON/MD)
 ├── final_outputs/               차트·표 PNG 산출물
-│   └── outputs/                     단계별 폴더(01_data ... 06_Regime_Analysis) + 레짐/누적수익 차트
+│   └── outputs/                     단계별 폴더(01_data / 02b_anomaly / 03_volatility / 05a_hmm_regime(_full) /
+│                                    05b_Analyze / 06_Regime_Analysis / 99_*) + 레짐·누적수익 차트
 │
 └── root_html/                   대시보드 프로토타입 정적 export
     └── root_files/                  Adaptive VolControl Fund.html
