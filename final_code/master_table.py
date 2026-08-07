@@ -91,9 +91,21 @@ def parse_config(cfg: dict) -> dict:
 
 # ── 3-레짐 정의 (HMM n=3 구조전환점, K_CUT 적용, 2026-05-07/12 갱신) ───────
 # 근거: HMM Bull/Neutral/Bear (≥63거래일 지속 필터) — N→B 전환점 ~2012-06, ~2020-01
-# 본 프로젝트 단일 기간 시스템. mt와 rt 모두 동일 레짐 사용.
 # R3 의 종료점은 K_CUT (2023-12-31, 168m TEST 구간 끝) 으로 정렬 — hold-out 24m
 # (2024-01 ~ 2025-12) 는 EVAL_PERIODS['HOLD_OUT'] 으로 분리 책임.
+#
+# ⚠️ 적용 범위 — 본 정의는 **K_CUT 계열 전용**이다.
+#    사용처 : 05a_HMM_Regime.ipynb / 05b_Analyze.ipynb / 06_Regime_Analysis.ipynb / 99_analyze_ann.ipynb
+#    설계   : TEST(2010-01~2023-12) + HOLD_OUT(2024-01~2025-12) 분리 → 슬롯 선택의 out-of-sample 검증
+#
+#    논문(및 99_main_analysis.ipynb / 99_analyze_ann_full.ipynb) 은 **다른 국면 정의**를 쓴다:
+#      R1 2010-01~2012-06 (30m) / R2 2012-07~2019-12 (90m)
+#      R3 2020-01~2023-06 (42m) / R4 2023-07~2025-12 (30m)
+#    출처는 05a_HMM_Regime_full.ipynb (전체 기간 HMM, 전환점 2023-06-05 를 분기말 round).
+#    해당 노트북들은 이 상수를 import 하지 않고 국면을 직접 hardcode 한다.
+#
+#    두 계열은 서로 다른 평가 설계이며 의도적으로 병존한다. 통합하지 말 것.
+#    배경과 판단 근거는 README "분석 계보 — 2단계 설계" 절 참조.
 REGIMES = [
     ('R1_회복',  '2010-01-01', '2012-06-30'),  # Post-GFC + EU위기 (30개월)
     ('R2_확장',  '2012-07-01', '2019-12-31'),  # 장기 Bull (90개월)
