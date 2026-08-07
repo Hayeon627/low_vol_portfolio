@@ -14,7 +14,7 @@
 ## 1. 전체 구조
 
 ```
-final_pt/
+final_code/
 ├── bl_config.py              ← EXPERIMENTS 정의 (90개)
 ├── bl_functions.py           ← BL 수식 핵심 함수 (Σ/π/P/Q/Ω/BL/TC/Metrics)
 ├── bl_runner.py              ← LSTM 로드 + monthly_cache + walk_forward 엔진
@@ -287,7 +287,7 @@ date        ticker  y_pred_lstm  y_pred_har  y_pred_ensemble  y_true  ...
 
 ```bash
 # 특정 실험만 재실행
-rm final_pt/results/{name}.pkl
+rm final_code/results/{name}.pkl
 # 04_BL_Walkforward.ipynb 실행 (해당 cfg만 walk_forward)
 ```
 

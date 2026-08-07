@@ -2,7 +2,7 @@
 
 > **저변동성 anomaly + LSTM σ 예측 + Black-Litterman 단일 view 프레임워크로 위험성향별 펀드 후보를 탐색하는 quant 프로젝트.**
 >
-> 최종 갱신: 2026-05-12
+> 최종 갱신: 2026-08-07
 
 ---
 
@@ -15,46 +15,59 @@
 3. LSTM HPO             ✅ 03a_LSTM_Optuna_GridSearch.ipynb     — V4_BEST_CONFIG 정당화 (Optuna 12-trial)
 3. LSTM σ 예측           ✅ 03b_Volatility_Forecasting.ipynb     — LSTM + HAR + Performance ensemble (617 종목 stockwise)
 4. Black-Litterman       ✅ 04_BL_Walkforward.ipynb (walk_forward)
-5. MVO + 위험성향 매핑    🟡 05b_Analyze.ipynb (분석 진행 중)
-6. 3-레짐 안정성 + 민감도  ✅ 05b_Analyze.ipynb (I/J/K/M/N)
-7. Streamlit 대시보드     🟡 streamlit_dashboard/ (초안 진행 중)
+5. MVO + 위험성향 매핑    ✅ 05b_Analyze.ipynb (분석 완료)
+6. 3-레짐 안정성 + 민감도  ✅ 05b_Analyze.ipynb (I/J/K/M/N) + 06_Regime_Analysis.ipynb (4-레짐 hold-out)
+7. 대시보드              ✅ root_html/ (Streamlit 프로토타입 정적 export)
 ```
 
 ---
 
 ## 파일 구조
 
+`final_code/`는 코드 전용 폴더. 노트북이 생성하는 데이터·결과·차트는 최종 스냅샷 정리 과정에서
+저장소 루트의 `final_data/`, `final_outputs/`로 옮겨졌다 (재실행 시에는 아래처럼 `final_code/` 하위에
+`data/`, `results/`, `outputs/`가 새로 생성됨 — [BL_EXPERIMENT_GUIDE.md](BL_EXPERIMENT_GUIDE.md) §8 참고).
+
 ```
-final_pt/
+final_code/
 ├── 01_DataCollection.ipynb            ← 데이터 수집 (S&P500 멤버십 + 가격 + 패널 + 보조)
 ├── 02a_EDA_Returns_Volatility.ipynb   ← 시계열 EDA (수익률 vs 변동성 예측성)
-├── 02b_LowVol_PortfolioSort.ipynb         ← 횡단면 EDA (저변동 anomaly 6단 검증)
+├── 02b_LowVol_PortfolioSort.ipynb     ← 횡단면 EDA (저변동 anomaly 6단 검증)
 ├── 03a_LSTM_Optuna_GridSearch.ipynb   ← HPO 보조 (12-trial Optuna → V4_BEST_CONFIG)
 ├── 03b_Volatility_Forecasting.ipynb   ← LSTM 학습 + HAR baseline + Diebold-Pauly ensemble
-├── 05a_HMM_Regime.ipynb                   ← 3-레짐 HMM 분류
+├── 04_BL_Walkforward.ipynb            ← walk_forward 실행 → results/*.pkl
+├── 05a_HMM_Regime.ipynb               ← 3-레짐 HMM 분류
+├── 05a_HMM_Regime_full.ipynb          ← 05a 전체 변수셋 버전 (VIF/구조적 단절 부록)
+├── 05b_Analyze.ipynb                  ← 분석 (§1 K_CUT → §2-§6 → §7 BL α 분해 → §8 winner 시계열)
+├── 06_Regime_Analysis.ipynb           ← 4-레짐 (3-K_CUT + R4 hold-out) winner 검증
+├── 99_analyze_ann.ipynb               ← ANN-anchor 벤치마크 비교
+├── 99_analyze_ann_full.ipynb          ← 99_analyze_ann 전체 변수셋 버전
+├── 99_main_analysis.ipynb             ← 통합 분석 백업본
 │
-├── 04_BL_Walkforward.ipynb                       ← walk_forward 실행 → results/*.pkl
-├── 05b_Analyze.ipynb                   ← 분석 (§1 K_CUT → §2-§6 → §7 BL α 분해)
-├── 06_Regime_Analysis.ipynb               ← 4-레짐 (3-K_CUT + R4 hold-out) winner 검증
-│
-├── appendix/                              ← Utility / Appendix 노트북 (발표 본문 외)
-│   ├── 99_explore.ipynb                ← 실험 탐색 utility (Q&A 백업)
-│   ├── 99_slot_effects.ipynb           ← Winner OAT (One-At-a-Time) 슬롯 효과
-│   └── 99_lstm_statistics.ipynb        ← LSTM RMSE 학술 통계
+├── appendix/                          ← Utility / Appendix 노트북 (발표 본문 외)
+│   ├── 99_explore.ipynb                    ← 실험 탐색 utility (Q&A 백업)
+│   ├── 99_slot_effects.ipynb               ← Winner OAT (One-At-a-Time) 슬롯 효과
+│   ├── 99_lstm_statistics.ipynb            ← LSTM RMSE 학술 통계
+│   ├── draft_a3_r1_concentration.ipynb     ← R1 구간 집중도 draft
+│   └── draft_a4_composition_qstats.ipynb   ← 포트폴리오 구성 Q 통계 draft
 │
 ├── timeseries_lib.py                  ← 시계열·통계 함수 (LSTM, HAR-RV, ensemble, 통계 검정)
 ├── lstm_pipeline.py                   ← LSTM high-level orchestration (V4_BEST_CONFIG, walk_forward)
 ├── bl_config.py                       ← EXPERIMENTS 정의 (90개 매트릭스)
+├── bl_config_ann.py                   ← ANN-anchor 벤치마크용 EXPERIMENTS 정의
 ├── bl_functions.py                    ← BL 핵심 함수 (Σ/π/P/Q/Ω/BL/TC/Metrics)
+├── bl_runner.py                       ← LSTM 로드 + monthly_cache + walk_forward 엔진
 ├── master_table.py                    ← results/*.pkl → mt/rt 빌더
 ├── analyze_plots.py                   ← 시각화 모듈
-│
-├── _evidence/                         ← 03a Optuna 캐시 (lstm_optuna_v4/best_metrics.json)
-├── data/                              ← 01 산출물 (monthly_panel, daily_returns, macro, FF 등)
-├── data/03b_lstm/data/         ← 03b 산출물 (ensemble_predictions_stockwise.csv)
-├── results/                           ← 90 매트릭스 BL pkl (tc=0.002 baked-in)
-├── outputs/                           ← 차트 PNG
-└── streamlit_dashboard/               ← Streamlit 앱 (초안)
+└── docs/                              ← 이 문서들이 위치한 폴더
+```
+
+최종 산출물(데이터·pkl·차트)은 저장소 루트 기준:
+
+```
+final_data/data/                       ← 01 산출물(monthly_panel, daily_returns, macro, FF 등) + data/03b_lstm/ (LSTM 예측치, BL pkl 등)
+final_outputs/outputs/                 ← 단계별 폴더 (01_data … 06_Regime_Analysis, 99_*) 차트 PNG
+root_html/root_files/                  ← 대시보드 정적 export (Adaptive VolControl Fund.html)
 ```
 
 ---
@@ -73,7 +86,7 @@ final_pt/
 
 ---
 
-## 핵심 결과 (현 시점)
+## 핵심 결과
 
 ### 02 EDA 정당화
 - **02a**: 수익률 R²≈0 / 변동성 ACF lag 60까지 유의 → **LSTM 변동성 예측 모델 정당화** (→ 03b)

@@ -2,7 +2,7 @@
 
 > **대상**: `mat_eq_eq_raw_pap` (05b §4.2 자동 식별 winner)
 > **기간**: 2010-01 ~ 2025-12 (192개월)
-> **시각화**: `final_pt/outputs/05b_Analyze/winner_slot_dynamics.png` (4 패널)
+> **시각화**: `final_code/outputs/05b_Analyze/winner_slot_dynamics.png` (재실행 시 생성; 최종 산출물은 `final_outputs/outputs/05b_Analyze/winner_slot_dynamics.png`) (4 패널)
 > **노트북**: [05b_Analyze.ipynb](../05b_Analyze.ipynb) §8
 
 ---

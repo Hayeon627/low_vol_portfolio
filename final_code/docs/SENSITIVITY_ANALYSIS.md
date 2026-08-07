@@ -317,7 +317,7 @@ winner 또는 sweep 결과 변경 시 자동 갱신됨 (`n_sig`, `n_marg`, `mean
 # Part 5. 산출물 위치
 
 ```
-final_pt/outputs/05b_Analyze/
+final_code/outputs/05b_Analyze/        (재실행 시 생성; 최종 산출물은 final_outputs/outputs/05b_Analyze/)
 ├─ M_winner_q_sensitivity.png         (M2 — Q 6 subplot 라인플롯)
 ├─ N_winner_pct_sensitivity.png       (N2 — PCT 6 subplot 라인플롯)
 ├─ _sweep_q_<winner>.pkl              (M1 결과 캐시 — 자동 생성)
