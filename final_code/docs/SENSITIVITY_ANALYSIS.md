@@ -3,6 +3,12 @@
 본 문서는 [05b_Analyze.ipynb](05b_Analyze.ipynb) **섹션 M (Q sensitivity, M0~M3)** 와 **섹션 N (PCT_GROUP sensitivity, N1~N3)** 의 winner 슬롯 민감도 분석 파이프라인이 **왜 필요한가**, **각 단계가 무엇을 답하는가**, **결과가 무엇을 의미하는가**를 정리.
 
 대상 슬롯: **`mat_eq_eq_raw_pap`** (winner, 자동 식별)
+
+> ### 📍 계보: 1단계 (K_CUT / hold-out 검증 설계)
+> 본 문서는 **1단계** 산출물을 기술한다. 국면 정의는 R1 30m / R2 90m / R3 48m(~2023-12-31) + R4 = hold-out 24m 이며, 상수는 `master_table.REGIMES` 이다.
+> **논문의 최종 결론은 2단계(full)** 로, 단일 winner 대신 두 옵션(Ensemble-defensive / Ensemble-adaptive)을 제안하고 국면을 R1 30m / R2 90m / R3 42m / R4 30m 로 재정의한다.
+> 1단계 winner `mat_eq_eq_raw_pap` 는 hold-out 24개월에서 Sortino 0.516 (90개 중 88위) 으로 실패했으며, 이 negative result 가 2단계 설계 전환의 근거다.
+> 배경은 저장소 루트 [README.md](../../README.md) "분석 계보 — 2단계 설계" 절 참조.
 - 식별 기준: `sortino_ir ≥ 10` 필터 (3-레짐 안정성 robust) → 전체기간 `mt['sortino']` 1위
 - Top 후보군: sortino_ir 16.50 / 전체기간 sortino 1.826 / Sharpe 1.096 / CAGR 16.2% / MDD -13.6%
 - **Q sweep**: 6개 q_value 변형 (`[0.001, 0.003, 0.0055, 0.0064, 0.008, 0.010]`)

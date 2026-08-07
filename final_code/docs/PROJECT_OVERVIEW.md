@@ -4,6 +4,12 @@
 >
 > 최종 갱신: 2026-08-07
 
+> ### 📍 계보: 1단계 (K_CUT / hold-out 검증 설계)
+> 본 문서는 **1단계** 산출물을 기술한다. 국면 정의는 R1 30m / R2 90m / R3 48m(~2023-12-31) + R4 = hold-out 24m 이며, 상수는 `master_table.REGIMES` 이다.
+> **논문의 최종 결론은 2단계(full)** 로, 단일 winner 대신 두 옵션(Ensemble-defensive / Ensemble-adaptive)을 제안하고 국면을 R1 30m / R2 90m / R3 42m / R4 30m 로 재정의한다.
+> 1단계 winner `mat_eq_eq_raw_pap` 는 hold-out 24개월에서 Sortino 0.516 (90개 중 88위) 으로 실패했으며, 이 negative result 가 2단계 설계 전환의 근거다.
+> 배경은 저장소 루트 [README.md](../../README.md) "분석 계보 — 2단계 설계" 절 참조.
+
 ---
 
 ## 파이프라인 (7-Step)
