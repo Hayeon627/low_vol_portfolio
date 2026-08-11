@@ -58,8 +58,8 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 │   └── outputs/                     단계별 폴더(01_data / 02b_anomaly / 03_volatility / 05a_hmm_regime(_full) /
 │                                    05b_Analyze / 06_Regime_Analysis / 99_*) + 레짐·누적수익 차트
 │
-└── root_html/                   대시보드 프로토타입 정적 export
-    └── root_files/                  Adaptive VolControl Fund.html
+└── root_html/                   대시보드 프로토타입 정적 export [1단계]
+    └── root_files/                  Adaptive VolControl Fund.html (168개월 hold-out 설계 기준)
 ```
 
 ### 코드 문서 가이드 (`final_code/docs/`)
@@ -85,7 +85,7 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 4. Black-Litterman   π/Σ/P/Q/Ω 슬롯 조합(90개) walk-forward 백테스트
 5. 성과 분석          MVO 위험성향 매핑, Sharpe/Sortino/MDD/α 분해
 6. 레짐 분해·검증      HMM 국면 분류 → hold-out 검증(1단계) / 4-국면 성과 분해(2단계)
-7. 대시보드            Streamlit 프로토타입 (root_html/에 정적 export 포함)
+7. 통계적 유의성 검증    Bootstrap + HAC(Ledoit-Wolf) 유의성 검정
 ```
 
 ---
@@ -102,6 +102,22 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 - **방식**: TEST 구간의 `sortino_ir` 기준으로 90개 슬롯 중 단일 winner 자동 선정 → hold-out으로 검증
 - **결과**: winner `mat_eq_eq_raw_pap` 가 **hold-out에서 실패**. Sortino 0.516(90개 중 88위), SPY 2.310 대비 -1.79.
   AI 랠리 강세장에서 저변동 anomaly의 cyclical 약점이 드러남 (Frazzini–Pedersen 2014 §5와 정합)
+- **부속 산출물**: `root_html/`의 대시보드 프로토타입도 이 단계에서 제작 (아래 참조)
+
+#### 대시보드 프로토타입 (`root_html/`) — 1단계 산출물
+
+`root_html/root_files/Adaptive VolControl Fund.html`은 **1단계 hold-out 설계를 기준으로 만든 펀드 소개용 프로토타입**입니다. 논문의 2단계 결론(두 옵션 제안, 4국면 분해)은 반영되어 있지 않습니다.
+
+1단계 기준임을 보여주는 근거:
+
+| 대시보드 표기 | 해석 |
+|---|---|
+| "시장 국면 배경: 회복기 / 확장기 / **변동기** / **검증 구간**" | 1단계 국면명 그대로 (R3 = `R3_변동`, 2단계는 `R3_위기`). R4를 "검증 구간"(hold-out)으로 표기 |
+| "실전 방식 **14년** 검증", "14년 월별 검증 결과" | 168개월 = TEST(2010-01 ~ 2023-12) = K_CUT. 2단계는 192개월 |
+
+표시 지표는 CAGR +15.08%, Sharpe 1.12, MDD −13.65%, 최종 자산 배수 9.46x (SPY 8.24x)입니다. MDD는 1단계 winner `mat_eq_eq_raw_pap`(−13.6%)와 부합하나 Sharpe·CAGR은 `PROJECT_OVERVIEW.md`의 192개월 수치(1.096 / 16.2%)와 달라, 168개월 TEST 창 기준으로 재계산된 값으로 보입니다.
+
+> 이 대시보드의 수치를 논문 결과로 인용하지 마세요. 논문 벤치마크 비교는 192개월·두 옵션 기준입니다.
 
 ### 전환 판단
 
