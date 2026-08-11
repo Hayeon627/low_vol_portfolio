@@ -7,6 +7,10 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 - **저자**: 서윤범, 김하연, 김재천, 김윤서, 서정욱
 - **대상 유니버스**: S&P 500 617개 종목, 2010–2025년 (192개월)
 
+👉 **[Adaptive VolControl Fund 대시보드 보기](https://hayeon627.github.io/low_vol_portfolio/)**
+
+> 대시보드는 **1단계 hold-out 설계 기준 시각화**입니다. 논문의 최종 결론(2단계 — 두 옵션 제안, 4국면 분해)은 반영되어 있지 않습니다. 자세한 내용은 아래 "분석 계보" 절을 참고하세요.
+
 ---
 
 ## 한 줄 요약
@@ -58,6 +62,7 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 │   └── outputs/                     단계별 폴더(01_data / 02b_anomaly / 03_volatility / 05a_hmm_regime(_full) /
 │                                    05b_Analyze / 06_Regime_Analysis / 99_*) + 레짐·누적수익 차트
 │
+├── index.html                      GitHub Pages 진입점 (대시보드로 리다이렉트)
 └── adaptive-volcontrol-fund.html   대시보드 시각화 (정적 export) [1단계 hold-out 기준]
 ```
 
@@ -104,6 +109,8 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 - **부속 산출물**: [adaptive-volcontrol-fund.html](adaptive-volcontrol-fund.html) 대시보드도 이 단계에서 제작 (아래 참조)
 
 #### 대시보드 시각화 ([adaptive-volcontrol-fund.html](adaptive-volcontrol-fund.html)) — 1단계 산출물
+
+공개 링크: **https://hayeon627.github.io/low_vol_portfolio/** (저장소 루트 `index.html`이 리다이렉트)
 
 **이 대시보드는 최종 분석 결과가 아닙니다.** 1단계 hold-out 설계로 분석했을 때의 **시각화 자료**이며, 논문의 최종 결론(2단계 — 두 옵션 제안, 4국면 분해)은 반영되어 있지 않습니다.
 
