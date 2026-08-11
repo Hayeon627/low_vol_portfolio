@@ -25,7 +25,7 @@ PANEL_END   = '2025-12-31'   # 월별 패널 종료 (TEST + HOLD_OUT 모두 포�
 
 **분석 구간**: 2010-01 ~ 2025-12 (BL walk-forward)
 - TEST: 2010-01 ~ 2023-12 (K_CUT)
-- HOLD_OUT: 2024-01 ~ 2025-12 (Streamlit 대시보드 검증용)
+- HOLD_OUT: 2024-01 ~ 2025-12 (24m) — 슬롯 선택의 out-of-sample 검증용 (`06_Regime_Analysis.ipynb` §3)
 
 **훈련 윈도우**: 60개월 → 2010-01 첫 예측 가능
 

@@ -40,7 +40,7 @@ from pathlib import Path
 # ── 평가 기간 (Train/Test/Hold-out 분리, 2026-05-07 도입) ───────────────────
 # walk_forward 는 PRED_END 까지 수익률 시리즈 생성. 평가는 EVAL_PERIODS 단위로 분리.
 PRED_START = '2010-01-01'
-PRED_END   = '2025-12-31'    # 기존 2024-12-31 → 12 month hold-out 추가
+PRED_END   = '2025-12-31'    # 기존 2024-12-31 에서 12개월 연장 (HOLD_OUT 은 아래 24m)
 
 EVAL_PERIODS = {
     'TEST'    : ('2010-01-01', '2023-12-31'),  # 168m, walk_forward training/calibration
