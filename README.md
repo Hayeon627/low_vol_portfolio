@@ -58,8 +58,7 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 │   └── outputs/                     단계별 폴더(01_data / 02b_anomaly / 03_volatility / 05a_hmm_regime(_full) /
 │                                    05b_Analyze / 06_Regime_Analysis / 99_*) + 레짐·누적수익 차트
 │
-└── root_html/                   대시보드 프로토타입 정적 export [1단계]
-    └── root_files/                  Adaptive VolControl Fund.html (168개월 hold-out 설계 기준)
+└── Adaptive VolControl Fund.html   대시보드 시각화 (정적 export) [1단계 hold-out 기준]
 ```
 
 ### 코드 문서 가이드 (`final_code/docs/`)
@@ -102,11 +101,11 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 - **방식**: TEST 구간의 `sortino_ir` 기준으로 90개 슬롯 중 단일 winner 자동 선정 → hold-out으로 검증
 - **결과**: winner `mat_eq_eq_raw_pap` 가 **hold-out에서 실패**. Sortino 0.516(90개 중 88위), SPY 2.310 대비 -1.79.
   AI 랠리 강세장에서 저변동 anomaly의 cyclical 약점이 드러남 (Frazzini–Pedersen 2014 §5와 정합)
-- **부속 산출물**: `root_html/`의 대시보드 프로토타입도 이 단계에서 제작 (아래 참조)
+- **부속 산출물**: `Adaptive VolControl Fund.html` 대시보드도 이 단계에서 제작 (아래 참조)
 
-#### 대시보드 프로토타입 (`root_html/`) — 1단계 산출물
+#### 대시보드 시각화 (`Adaptive VolControl Fund.html`) — 1단계 산출물
 
-`root_html/root_files/Adaptive VolControl Fund.html`은 **1단계 hold-out 설계를 기준으로 만든 펀드 소개용 프로토타입**입니다. 논문의 2단계 결론(두 옵션 제안, 4국면 분해)은 반영되어 있지 않습니다.
+**이 대시보드는 최종 분석 결과가 아닙니다.** 1단계 hold-out 설계로 분석했을 때의 **시각화 자료**이며, 논문의 최종 결론(2단계 — 두 옵션 제안, 4국면 분해)은 반영되어 있지 않습니다.
 
 1단계 기준임을 보여주는 근거:
 

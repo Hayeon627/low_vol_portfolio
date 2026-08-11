@@ -23,7 +23,8 @@
 4. Black-Litterman       ✅ 04_BL_Walkforward.ipynb (walk_forward)
 5. MVO + 위험성향 매핑    ✅ 05b_Analyze.ipynb (분석 완료)
 6. 3-레짐 안정성 + 민감도  ✅ 05b_Analyze.ipynb (I/J/K/M/N) + 06_Regime_Analysis.ipynb (4-레짐 hold-out)
-7. 대시보드              ✅ root_html/ (Streamlit 프로토타입 정적 export)
+7. 대시보드 시각화        ✅ Adaptive VolControl Fund.html (저장소 루트, 정적 export)
+                          ※ 1단계 hold-out 기준 시각화. 논문 최종 결론(2단계) 미반영
 ```
 
 ---
@@ -73,7 +74,7 @@ final_code/
 ```
 final_data/data/                       ← 01 산출물(monthly_panel, daily_returns, macro, FF 등) + data/03b_lstm/ (LSTM 예측치, BL pkl 등)
 final_outputs/outputs/                 ← 단계별 폴더 (01_data … 06_Regime_Analysis, 99_*) 차트 PNG
-root_html/root_files/                  ← 대시보드 정적 export (Adaptive VolControl Fund.html)
+Adaptive VolControl Fund.html          ← 대시보드 정적 export (저장소 루트, 1단계 hold-out 기준)
 ```
 
 ---
