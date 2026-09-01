@@ -21,7 +21,7 @@ LSTM–HAR 앙상블 기반 변동성 예측을 블랙-리터만(Black-Litterman
 
 | 구분 | 결과 |
 |---|---|
-| 변동성 예측 | LSTM–HAR 앙상블 RMSE 0.3822 (HAR 단독 0.3914, LSTM 단독 0.5185 대비 우위, 특히 COVID-19 위기 구간 R3에서 격차 최대) |
+| 변동성 예측 | LSTM–HAR 앙상블 RMSE 0.3520 (HAR 단독 0.3603, LSTM 단독 0.3907 대비 우위, 특히 COVID-19 위기 구간 R3에서 격차 최대) |
 | 저변동 anomaly (횡단면 EDA) | 저변동 Sharpe 0.96 vs 고변동 0.73, MDD -16.7% vs -34.1% |
 | **최종 제안** (논문) | 단일 최적 슬롯 대신 **두 옵션** — Ensemble-defensive($q^{lam}$, 전 국면 저변동 뷰 유지) / Ensemble-adaptive($q^{ff3}$, 강세장 적응) |
 | 벤치마크 대비 (20bp 거래비용 차감 후) | SPY 0.93 / 1N 0.86 / Risk Parity 0.89 / ANN-anchor 0.95 대비 우위 (Ensemble-defensive 1.04–1.07, Ensemble-adaptive 1.05–1.10) |
